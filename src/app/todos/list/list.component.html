@@ -1,0 +1,44 @@
+<h1>Todos ({{todos.length}})</h1>
+<div>
+  <a [routerLink]="['/todos/create']" class='btn btn-success'>Add new</a>&nbsp;
+  <button class="btn btn-primary" (click)="seedDatabase()">Seed Database</button>
+  &nbsp;
+  <button class="btn btn-danger" (click)="deleteAll()">Delete All</button>
+</div>
+
+<table>
+  <thead>
+  <tr>
+    <th>Title</th>
+    <th>Completed</th>
+    <th>Created At</th>
+    <th>Updated At</th>
+    <th>Actions</th>
+  </tr>
+  </thead>
+  <tr *ngFor="let todo of todos">
+    <td>
+      {{todo.title}}
+    </td>
+    <td>
+      <input type='checkbox' (click)='toggleComplete(todo)' [checked]="todo.completed"/>
+    </td>
+    <td>
+      {{todo.createdAt}}
+    </td>
+    <td>
+      {{todo.updatedAt}}
+    </td>
+    <td>
+      <!-- <span (click)='getDetails(todo)' class='btn btn-info'>Details</span> -->
+      <a [routerLink]="['/todos/', todo.$key]" class="btn btn-primary active" role="button"
+         routerLinkActive="active">Details</a>
+    </td>
+    <td>
+      <a [routerLink]="['/todos/', todo.$key, 'edit']" class='btn btn-warning'>Edit</a>
+    </td>
+    <td>
+      <button type="button" class="btn btn-danger" (click)='deleteTodo(todo)'>Delete</button>
+    </td>
+  </tr>
+</table>

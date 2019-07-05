@@ -1,0 +1,41 @@
+<div [hidden]="submitted" class="container" style="width: 300px;">
+  <h3>{{todo ? 'Update' : 'Create'}} Todo</h3>
+  <form [formGroup]="todoForm">
+    <div class="form-group">
+      <label for="title">Title</label>
+      <input type="text" class="form-control" id="title" required formControlName="title" name="title"
+             [value]="todo?.title"/>
+    </div>
+
+    <div class="form-group">
+      <label for="description">Description</label>
+      <textarea type="text" class="form-control" id="description" required formControlName="description"
+                [value]="todo?.description"
+                name="description"></textarea>
+    </div>
+
+    <div class="form-group">
+      <label for="completed">Completed</label>&nbsp;
+      <input type="checkbox" id="completed" required formControlName="completed" [checked]="todo?.completed"
+             name="completed">
+    </div>
+
+    <div class="row">
+      <button class="btn btn-success" (click)="createOrUpdateTodo()" [disabled]="isSubmitting">
+        {{todo ? 'Update' : 'Create'}}
+      </button>
+      &nbsp;
+      <button *ngIf="todo" class="btn btn-danger" (click)="delete()" [disabled]="isSubmitting">
+        Delete
+      </button>
+      &nbsp;
+      <button class="btn btn-warning" (click)="goHome()" [disabled]="isSubmitting">
+        Back Home
+      </button>
+    </div>
+  </form>
+</div>
+
+
+
+
